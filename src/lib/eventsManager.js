@@ -1,7 +1,7 @@
 const makeEventManager = (context) => ({
   sub(socket, event, handler) {
     socket.on(event, (data) => handler({
-      ...context, data, socket, eventsManger: this,
+      ...context, data, socket, eventManager: this,
     }));
   },
 });
