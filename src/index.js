@@ -1,14 +1,17 @@
 const http = require('http');
 const { Server } = require('socket.io');
+const { setupGame } = require('./game');
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
-const server = http.createServer();
+function main() {
+  const server = http.createServer();
 
-const io = new Server(server);
+  const io = new Server(server);
 
-io.on('connection', () => {
-  console.log('Socket connected');
-});
+  setupGame(io);
 
-server.listen(process.env.PORT, () => console.log('Server is running'));
+  server.listen(process.env.PORT, () => console.log('Server is running'));
+}
+
+main();
