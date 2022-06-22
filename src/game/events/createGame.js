@@ -1,5 +1,5 @@
 const { events } = require('.');
-const GamesRepository = require('../repository/gamesRepository');
+const { GamesRepository } = require('../repository/gamesRepository');
 const { Game } = require('../entities/Game');
 const { Player } = require('../entities/Player');
 

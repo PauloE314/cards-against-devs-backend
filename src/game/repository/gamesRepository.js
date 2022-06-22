@@ -1,19 +1,19 @@
-const games = {};
+class GamesRepository {
+  static games = {};
 
-async function save(game) {
-  games[game.id] = game;
-}
+  static async save(game) {
+    this.games[game.id] = game;
+  }
 
-async function fetch(id) {
-  return games[id];
-}
+  static async fetch(id) {
+    return this.games[id];
+  }
 
-async function remove(id) {
-  delete games[id];
+  static async remove(id) {
+    delete this.games[id];
+  }
 }
 
 module.exports = {
-  save,
-  fetch,
-  remove,
+  GamesRepository,
 };
