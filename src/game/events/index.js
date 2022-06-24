@@ -1,4 +1,4 @@
-export const events = {
+const events = {
   connection: 'connection',
   disconnect: 'disconnect',
 
@@ -14,3 +14,5 @@ export const events = {
 
   playerDisconnect: 'player-disconnect',
 };
+
+module.exports = { events };
