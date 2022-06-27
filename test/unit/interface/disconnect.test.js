@@ -2,6 +2,7 @@ const actions = require('../../../src/game/actions');
 const { disconnect } = require('../../../src/game/interface/ws');
 const { Game } = require('../../../src/game/entities/Game');
 const { events } = require('../../../src/game/events');
+const { socketFactory, eventsManagerFactory } = require('../../factories');
 
 jest.mock('../../../src/game/actions/disconnect');
 
@@ -13,8 +14,8 @@ describe('disconnect', () => {
   let player;
 
   beforeEach(() => {
-    socket = { id: 'abc', emit: jest.fn(), join: jest.fn(), data: { gameId } };
-    eventsManager = { sub: jest.fn(), unsub: jest.fn(), emitToRoom: jest.fn() };
+    socket = socketFactory({ data: { gameId } });
+    eventsManager = eventsManagerFactory();
     context = { socket, eventsManager };
 
     player = { id: socket.id };

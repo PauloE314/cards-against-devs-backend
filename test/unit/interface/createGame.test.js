@@ -2,6 +2,7 @@ const actions = require('../../../src/game/actions');
 const { createGame } = require('../../../src/game/interface/ws');
 const { Game } = require('../../../src/game/entities/Game');
 const { events } = require('../../../src/game/events');
+const { socketFactory, eventsManagerFactory } = require('../../factories');
 
 jest.mock('../../../src/game/actions/createGame');
 
@@ -13,8 +14,8 @@ describe('createGame', () => {
   let context;
 
   beforeEach(() => {
-    socket = { emit: jest.fn(), join: jest.fn(), data: { name: 'Hello' } };
-    eventsManager = { sub: jest.fn(), unsub: jest.fn() };
+    socket = socketFactory({ data: { name: 'Hello ' } });
+    eventsManager = eventsManagerFactory();
     context = { socket, eventsManager };
   });
 
