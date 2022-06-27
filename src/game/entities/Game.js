@@ -11,6 +11,7 @@ class Game {
     this.state = Game.waiting;
     this.players = [];
     this.questions = questions;
+    this.seniorId = null;
   }
 
   get currentQuestion() {
@@ -23,12 +24,10 @@ class Game {
 
   addPlayer(player) {
     this.players.push(player);
-    player.gameId = this.id;
   }
 
   removePlayer(player) {
     this.players = this.players.filter(({ id }) => id !== player.id);
-    player.gameId = undefined;
   }
 }
 

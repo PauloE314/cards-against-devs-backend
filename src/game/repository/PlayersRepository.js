@@ -1,8 +1,8 @@
 class PlayersRepository {
   static players = {};
 
-  static async save(game) {
-    this.players[game.id] = game;
+  static async save(player) {
+    this.players[player.id] = player;
   }
 
   static async fetch(id) {

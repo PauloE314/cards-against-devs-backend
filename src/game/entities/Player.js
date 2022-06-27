@@ -1,21 +1,15 @@
-class Player {
-  constructor(socket) {
-    this.id = socket.id;
-    this.socket = socket;
-    this.isReady = false;
-    this.isSenior = false;
-    this.gameId = '';
-    this.answers = [];
+const { v4: uuidv4 } = require('uuid');
 
-    socket.data.player = this;
+class Player {
+  constructor(socketId, name) {
+    this.id = uuidv4();
+    this.socketId = socketId;
+    this.name = name;
+    this.gameId = null;
   }
 
   inGame() {
     return !!this.gameId;
-  }
-
-  toJSON() {
-    return { ...this, socket: undefined };
   }
 }
 

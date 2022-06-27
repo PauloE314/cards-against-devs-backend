@@ -10,20 +10,16 @@ describe('Game', () => {
   });
 
   describe('#addPlayer', () => {
-    it('adds player to players list and saves gameId in player', () => {
+    it('adds player to players list', () => {
       game.addPlayer(player);
-
       expect(game.players.length).toBe(1);
-      expect(player.gameId).toBe(game.id);
     });
   });
 
   describe('#removePlayer', () => {
-    it('removes player from players list and removes gameId from player', () => {
+    it('removes player from players list', () => {
       game.removePlayer(player);
-
       expect(game.players.length).toBe(0);
-      expect(player.gameId).toBeUndefined();
     });
   });
 });
