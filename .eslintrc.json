@@ -7,13 +7,15 @@
   },
   "extends": [
     "airbnb-base",
-    "eslint:recommended"
+    "eslint:recommended",
+    "plugin:prettier/recommended"
   ],
   "parserOptions": {
     "ecmaVersion": "latest"
   },
   "plugins": ["jest"],
   "rules": {
+    "prettier/prettier": "error",
     "global-require": "off",
     "no-console": "off",
     "import/prefer-default-export": "off",
