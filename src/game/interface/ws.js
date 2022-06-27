@@ -13,7 +13,7 @@ async function createGame({ socket, eventsManager }) {
   eventsManager.unsub(socket, events.createGame);
 }
 
-async function disconnect({ socket, io }) {
+async function disconnect({ socket, eventsManager }) {
   const { gameId } = socket.data;
 
   if (!gameId) return;
@@ -21,10 +21,11 @@ async function disconnect({ socket, io }) {
   const { player } = await actions.disconnect({
     playerId: socket.id,
     gameId,
-    onGameInterrupted: () => io.to(gameId).emit(events.gameInterrupted),
+    onGameInterrupted: () =>
+      eventsManager.emitToRoom(gameId, events.gameInterrupted),
   });
 
-  io.to(gameId).emit(events.playerDisconnect, player);
+  eventsManager.emitToRoom(gameId, events.playerDisconnect, player);
 }
 
 module.exports = { createGame, disconnect };

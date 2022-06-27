@@ -12,6 +12,9 @@ const makeEventManager = context => ({
   unsub(socket, ...events) {
     events.forEach(event => socket.off(event));
   },
+  emitToRoom(roomId, event, data) {
+    context.io.to(roomId).emit(event, data);
+  },
 });
 
 module.exports = { makeEventManager };
