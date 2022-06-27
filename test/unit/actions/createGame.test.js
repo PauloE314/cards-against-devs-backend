@@ -12,13 +12,13 @@ describe('createGame', () => {
   const name = 'Some random name';
 
   it('saves a new game', async () => {
-    await createGame(socketId, name);
+    await createGame({ socketId, name });
     expect(GamesRepository.save).toHaveBeenCalledWith(expect.any(Game));
   });
 
   it('adds player to game player list', async () => {
     const spy = jest.spyOn(Game.prototype, 'addPlayer');
-    await createGame(socketId, name);
+    await createGame({ socketId, name });
     expect(spy).toHaveBeenCalledWith(expect.any(Player));
   });
 });

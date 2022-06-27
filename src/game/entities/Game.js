@@ -3,6 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 class Game {
   static states = {
     waiting: 'waiting',
+    running: 'running',
   };
 
   constructor(questions = []) {
@@ -18,18 +19,28 @@ class Game {
     return this.questions[this.round - 1];
   }
 
-  playerCount() {
+  isSenior(playerId) {
+    return this.seniorId === playerId;
+  }
+
+  isRunning() {
+    return this.state === Game.states.running;
+  }
+
+  findPlayer(id) {
+    return this.players.find(player => player.id === id);
+  }
+
+  get playerAmount() {
     return this.players.length;
   }
 
   addPlayer(player) {
     this.players.push(player);
-    player.gameId = player;
   }
 
-  removePlayer(player) {
-    this.players = this.players.filter(({ id }) => id !== player.id);
-    player.gameId = null;
+  removePlayer(id) {
+    this.players = this.players.filter(player => player.id !== id);
   }
 }
 

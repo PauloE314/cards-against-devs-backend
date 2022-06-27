@@ -10,7 +10,7 @@ function ensureAuthName(socket, next) {
 
 function setupGame(io) {
   io.use(ensureAuthName);
-  io.on(events.connection, async (socket) => {
+  io.on(events.connection, async socket => {
     const eventsManager = makeEventManager({ io });
     eventsManager.sub(socket, events.createGame, createGame);
   });

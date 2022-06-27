@@ -1,9 +1,6 @@
-const { v4: uuidv4 } = require('uuid');
-
 class Player {
-  constructor(socketId, name) {
-    this.id = uuidv4();
-    this.socketId = socketId;
+  constructor(id, name) {
+    this.id = id;
     this.name = name;
     this.gameId = null;
   }

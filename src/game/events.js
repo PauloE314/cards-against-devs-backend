@@ -13,6 +13,7 @@ const events = {
   endRound: 'end-round',
 
   playerDisconnect: 'player-disconnect',
+  gameInterrupted: 'game-interrupted',
 };
 
 module.exports = { events };

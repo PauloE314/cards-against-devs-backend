@@ -5,7 +5,7 @@ const { events } = require('../../../src/game/events');
 
 jest.mock('../../../src/game/actions/createGame');
 
-actions.createGame.mockReturnValue(new Game([]));
+actions.createGame.mockResolvedValue({ game: new Game([]) });
 
 describe('createGame', () => {
   let socket;
@@ -20,7 +20,10 @@ describe('createGame', () => {
 
   it('calls createGame action', async () => {
     await createGame(context);
-    expect(actions.createGame).toHaveBeenCalledWith(socket.id, socket.data.name);
+    expect(actions.createGame).toHaveBeenCalledWith({
+      playerId: socket.id,
+      name: socket.data.name,
+    });
   });
 
   it('adds socket to game room', async () => {
