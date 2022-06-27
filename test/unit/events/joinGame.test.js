@@ -1,4 +1,3 @@
-const { createGame } = require('../../../src/game/events/createGame');
 const { GamesRepository } = require('../../../src/game/repository/gamesRepository');
 const { Game } = require('../../../src/game/entities/Game');
 const { events } = require('../../../src/game/events');
@@ -7,7 +6,7 @@ const { Player } = require('../../../src/game/entities/Player');
 jest.mock('../../../src/game/repository/gamesRepository');
 // passar gamesRepository no context? (outra PR)
 // factory socket
-describe('createGame', () => {
+describe('joinGame', () => {
   let socket;
 
   beforeEach(() => {

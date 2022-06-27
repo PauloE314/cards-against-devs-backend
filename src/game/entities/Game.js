@@ -30,6 +30,10 @@ class Game {
     this.players = this.players.filter(({ id }) => id !== player.id);
     player.gameId = undefined;
   }
+
+  get isWaiting() {
+    return this.state === Game.states.waiting;
+  }
 }
 
 module.exports = { Game };

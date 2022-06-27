@@ -1,13 +1,12 @@
 class Player {
-  constructor(socket) {
+  constructor(socket, name = '', gameId = '') {
     this.id = socket.id;
     this.socket = socket;
     this.isReady = false;
     this.isSenior = false;
-    this.gameId = '';
+    this.gameId = gameId;
     this.answers = [];
-
-    socket.data.player = this;
+    this.name = name;
   }
 
   inGame() {
