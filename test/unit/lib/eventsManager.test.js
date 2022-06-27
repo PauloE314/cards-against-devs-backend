@@ -1,11 +1,15 @@
 const { makeEventManager } = require('../../../src/lib/eventsManager');
 
 describe('makeEventsManager', () => {
-  const socket = { on: jest.fn() };
+  let socket;
   const context = { foo: 'bar' };
   const event = 'test-event';
 
-  describe('#stub', () => {
+  beforeEach(() => {
+    socket = { on: jest.fn(), off: jest.fn() };
+  });
+
+  describe('#sub', () => {
     it('calls socket#on with correct event and handler', () => {
       const eventManager = makeEventManager(context);
       eventManager.sub(socket, event, jest.fn());
@@ -29,6 +33,14 @@ describe('makeEventsManager', () => {
         socket,
         data,
       });
+    });
+  });
+
+  describe('#unsub', () => {
+    it('calls socket#off with correct event name for each event passed', () => {
+      const eventManager = makeEventManager(context);
+      eventManager.unsub(socket, event);
+      expect(socket.off).toHaveBeenCalledWith(event);
     });
   });
 });
