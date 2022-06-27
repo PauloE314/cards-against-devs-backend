@@ -1,8 +1,6 @@
-const { events } = require('./events');
+const { events } = require('./actions');
 const { makeEventManager } = require('../lib/eventsManager');
-const { createGame } = require('./events/createGame');
-const { Player } = require('./entities/Player');
-const { PlayersRepository } = require('./repository/PlayersRepository');
+const { createGame } = require('./interface/ws');
 
 function ensureAuthName(socket, next) {
   if (!socket.handshake.auth.name) return next(new Error());
@@ -13,11 +11,7 @@ function ensureAuthName(socket, next) {
 function setupGame(io) {
   io.use(ensureAuthName);
   io.on(events.connection, async (socket) => {
-    const player = new Player(socket, socket.data.name);
-    await PlayersRepository.save(player);
-    socket.join(player.id);
-
-    const eventsManager = makeEventManager({ io, player });
+    const eventsManager = makeEventManager({ io });
     eventsManager.sub(socket, events.createGame, createGame);
   });
 }

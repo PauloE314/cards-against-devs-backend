@@ -24,10 +24,12 @@ class Game {
 
   addPlayer(player) {
     this.players.push(player);
+    player.gameId = player;
   }
 
   removePlayer(player) {
     this.players = this.players.filter(({ id }) => id !== player.id);
+    player.gameId = null;
   }
 }
 
